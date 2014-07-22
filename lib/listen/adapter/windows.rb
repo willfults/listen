@@ -18,7 +18,7 @@ module Listen
         require 'wdm'
         true
       rescue LoadError
-        _log :debug, "wdm - load failed: #{$!}:#{$@.join("\n")}"
+        #_log :debug, "wdm - load failed: #{$!}:#{$@.join("\n")}"
         Kernel.warn BUNDLER_DECLARE_GEM
         false
       end
@@ -27,7 +27,7 @@ module Listen
 
       def _configure(dir, &callback)
         require 'wdm'
-        _log :debug, 'wdm - starting...'
+        #_log :debug, 'wdm - starting...'
         @worker ||= WDM::Monitor.new
         @worker.watch_recursively(dir.to_s, :files) do |change|
           callback.call([:file, change])
@@ -48,7 +48,7 @@ module Listen
       end
 
       def _process_event(dir, event)
-        _log :debug, "wdm - callback: #{event.inspect}"
+        #_log :debug, "wdm - callback: #{event.inspect}"
 
         type, change = event
 
@@ -82,7 +82,7 @@ module Listen
         end
       rescue
         details = event.inspect
-        _log :error, "wdm - callback (#{details}): #{$!}:#{$@.join("\n")}"
+        #_log :error, "wdm - callback (#{details}): #{$!}:#{$@.join("\n")}"
         raise
       end
 

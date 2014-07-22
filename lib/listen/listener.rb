@@ -245,7 +245,7 @@ module Listen
     end
 
     def _log(type, message)
-      Celluloid.logger.send(type, message)
+      #Celluloid.logger.send(type, message)
     end
 
     def _adapter_class
@@ -271,7 +271,7 @@ module Listen
       block_start = Time.now.to_f
       # TODO: condition not tested, but too complex to test ATM
       block.call(*result) unless result.all?(&:empty?)
-      _log :debug, "Callback took #{Time.now.to_f - block_start} seconds"
+      #_log :debug, "Callback took #{Time.now.to_f - block_start} seconds"
     end
 
     attr_reader :wait_thread
@@ -323,16 +323,16 @@ module Listen
     end
 
     def _queue_raw_change(type, dir, rel_path, options)
-      _log :debug, "raw queue: #{[type, dir, rel_path, options].inspect}"
+      #_log :debug, "raw queue: #{[type, dir, rel_path, options].inspect}"
 
       unless (worker = async(:change_pool))
-        _log :warn, 'Failed to allocate worker from change pool'
+        #_log :warn, 'Failed to allocate worker from change pool'
         return
       end
 
       worker.change(type, dir, rel_path, options)
     rescue RuntimeError
-      _log :error, "#{__method__} crashed: #{$!}:#{$@.join("\n")}"
+      #_log :error, "#{__method__} crashed: #{$!}:#{$@.join("\n")}"
       raise
     end
   end

@@ -14,11 +14,11 @@ module Listen
       current = Set.new(path.children)
 
       if options[:silence]
-        _log :debug, "Recording: #{rel_path}: #{options.inspect}"\
-          " [#{previous.inspect}] -> (#{current.inspect})"
+        #_log :debug, "Recording: #{rel_path}: #{options.inspect}"\
+         # " [#{previous.inspect}] -> (#{current.inspect})"
       else
-        _log :debug, "Scanning: #{rel_path}: #{options.inspect}"\
-          " [#{previous.inspect}] -> (#{current.inspect})"
+        #_log :debug, "Scanning: #{rel_path}: #{options.inspect}"\
+        #  " [#{previous.inspect}] -> (#{current.inspect})"
       end
 
       current.each do |full_path|
@@ -42,7 +42,7 @@ module Listen
       _async_changes(dir, path, queue, previous, options)
       _change(queue, :file, dir, rel_path, options)
     rescue
-      _log :warn, "scanning DIED: #{$!}:#{$@.join("\n")}"
+     # _log :warn, "scanning DIED: #{$!}:#{$@.join("\n")}"
       raise
     end
 
@@ -69,7 +69,7 @@ module Listen
     end
 
     def self._log(type, message)
-      Celluloid.logger.send(type, message)
+      #Celluloid.logger.send(type, message)
     end
   end
 end
