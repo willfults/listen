@@ -23,7 +23,7 @@ module Listen
       path = watched_dir + rel_path
 
       log_details = options[:silence] && 'recording' || change || 'unknown'
-      _log :debug, "#{log_details}: #{type}:#{path} (#{options.inspect})"
+      #_log :debug, "#{log_details}: #{type}:#{path} (#{options.inspect})"
 
       if change
         # TODO: move this to Listener to avoid Celluloid overhead

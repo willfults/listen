@@ -37,7 +37,7 @@ end
 
 require 'celluloid/rspec'
 Thread.abort_on_exception = true
-Celluloid.logger.level = Logger::ERROR
+#Celluloid.logger.level = Logger::ERROR
 
 RSpec.configuration.before(:each) do
   Celluloid.boot
