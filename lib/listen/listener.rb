@@ -36,7 +36,7 @@ module Listen
       # Setup logging first
       # ignore logging since it is causing a bootup is
       Celluloid.logger.level = _debug_level if Celluloid.logger.respond_to?(:level=)
-      _log :info, "Celluloid loglevel set to: #{Celluloid.logger.level}"
+      #_log :info, "Celluloid loglevel set to: #{Celluloid.logger.level}"
 
       @silencer = Silencer.new
       _reconfigure_silencer({})
