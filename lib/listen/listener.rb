@@ -34,9 +34,8 @@ module Listen
       @options = _init_options(args.last.is_a?(Hash) ? args.pop : {})
 
       # Setup logging first
-      # ignore logging since it is causing a bootup issue with sidekiq
-      Celluloid.logger = Logger.new(STDOUT)
-      Celluloid.logger.level = Logger::WARN
+      # ignore logging since it is causing a bootup is
+      Celluloid.logger.level = _debug_level if Celluloid.logger.respond_to?(:level=)
       _log :info, "Celluloid loglevel set to: #{Celluloid.logger.level}"
 
       @silencer = Silencer.new
